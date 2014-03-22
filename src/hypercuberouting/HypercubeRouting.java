@@ -71,12 +71,15 @@ public class HypercubeTopologyRouting {
                     if ((xorEntreNodos & (int)(Math.pow(2, dimensionActual - 1))) != 0){ // Controlamos si en la dimension actual debemos viajar al nodo vecino.
                         // Significa que en esa dimension debo cambiar de nodo al otro nodo de la dimension.
                         
+                        /*
                         if ((nodoVecinoTemporario & (int)(Math.pow(2, dimensionActual - 1))) == 0){
                             nodoVecinoTemporario += Math.pow(2,dimensionActual-1);
                         }
                         else{
                             nodoVecinoTemporario -= Math.pow(2,dimensionActual-1);
-                        }
+                        }*/
+                        
+                        nodoVecinoTemporario = nodoVecinoTemporario ^ (int)(Math.pow(2, dimensionActual - 1)); // La operacion de XOR a nivel de bits invierte los bits del primer operando en la posiciones donde el segundo operando tiene un uno.
                         
                         System.out.printf("-> %d ", nodoVecinoTemporario);
                     }
