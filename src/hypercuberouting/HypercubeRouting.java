@@ -4,7 +4,7 @@
  * Licenciatura en Ciencias de la Computación
  * UNSL
  */
-package hypercubetopologyrouting;
+package hypercuberouting;
 
 /**
  *
@@ -12,7 +12,7 @@ package hypercubetopologyrouting;
  */
 
 
-public class HypercubeTopologyRouting {
+public class HypercubeRouting {
 
     static String[] ayuda = {"*********************************************************************",
                             "---- PROGRAMA PARA RUTEO DE NODOS EN RED CON TOPOLOGIA HYPERCUBO ----",
@@ -68,18 +68,14 @@ public class HypercubeTopologyRouting {
                         break;
                     }
                     
-                    if ((xorEntreNodos & (int)(Math.pow(2, dimensionActual - 1))) != 0){ // Controlamos si en la dimension actual debemos viajar al nodo vecino.
-                        // Significa que en esa dimension debo cambiar de nodo al otro nodo de la dimension.
-                        
-                        /*
-                        if ((nodoVecinoTemporario & (int)(Math.pow(2, dimensionActual - 1))) == 0){
-                            nodoVecinoTemporario += Math.pow(2,dimensionActual-1);
-                        }
-                        else{
-                            nodoVecinoTemporario -= Math.pow(2,dimensionActual-1);
-                        }*/
-                        
-                        nodoVecinoTemporario = nodoVecinoTemporario ^ (int)(Math.pow(2, dimensionActual - 1)); // La operacion de XOR a nivel de bits invierte los bits del primer operando en la posiciones donde el segundo operando tiene un uno.
+                    // Controlamos si en la dimension actual debemos viajar al nodo vecino.
+                    // Si el resultado del XOR entre los nodos en la dimension actual es uno entramos en el cuerpo de la condicion. (Esto lo controlamos con la siguiente sentencia: (xorEntreNodos & (int)(Math.pow(2, dimensionActual - 1))) != 0)
+                    if ((xorEntreNodos & (int)(Math.pow(2, dimensionActual - 1))) != 0){ 
+                        // Significa que en esa dimension debo cambiar de nodo al otro nodo de la dimension.                      
+                       
+                        // La operacion de XOR a nivel de bits invierte los bits del primer operando en la posiciones donde el segundo operando tiene un uno.
+                        // Asi logramos que viaje al nodo vecino invirtiendo los bits.
+                        nodoVecinoTemporario = nodoVecinoTemporario ^ (int)(Math.pow(2, dimensionActual - 1)); 
                         
                         System.out.printf("-> %d ", nodoVecinoTemporario);
                     }
